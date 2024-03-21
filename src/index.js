@@ -17,7 +17,7 @@ function refreshWeather(response) {
   temperatureElement.innerHTML = Math.round(temperature);
   iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
 
-  getForecast(response.dat.city);
+  getForecast(response.data.city);
 }
 
 function formatDate(date) {
