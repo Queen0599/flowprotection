@@ -16,6 +16,8 @@ function refreshWeather(response) {
   windSpeedElement.innerHTML = `${response.data.wind.speed}km/h`;
   temperatureElement.innerHTML = Math.round(temperature);
   iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
+  
+  getForecast(response.data.city);
 }
 
 function formatDate(date) {
@@ -62,12 +64,11 @@ function getForecast(city) {
   let apiKey = "3tf668c6oaaa68e83853142bf5f64980 ";
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apikey}&units=metric`;
   axios(apiUrl).then(displayForecast);
-
-  getForecast(response.data.city);
 }
 
 function displayForecast(response) {
   let forecastHTML = "";
+  
   response.data.daily.forEach(function (day, index) {
     if (index < 5)
       forecast.innerHTML =
@@ -75,6 +76,7 @@ function displayForecast(response) {
         `
       <div class="weather-forecast-day">
         <div class="weather-forecast-date">${formatDay(day.time)}</div>
+        
         <img src="${day.condition.icon_url}" class="weather-forecast-icon"/>
         <div class="weather-forecast-temperatures">
           <div class="weather-forecast-temperature">
