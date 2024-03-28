@@ -53,17 +53,18 @@ function handleSearchSubmit(event) {
 
   searchCity(searchInput.value);
 }
-
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
-  let days = [" Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   return days[date.getDay()];
 }
+
 function getForecast(city) {
-  let apiKey = "3tf668c6oaaa68e83853142bf5f64980 ";
+  let apiKey = "3tf668c6oaaa68e83853142bf5f64980";
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
-  axios(apiUrl).then(displayForecast);
+
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function displayForecast(response) {
